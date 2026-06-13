@@ -15,7 +15,7 @@ export default async function CustomPokemonDetailPage({ params }: Props) {
   if (!customPokemon) {
     return (
       <main className="max-w-4xl mx-auto px-4 py-8">
-        <EmptyState message="Custom pokémon tidak ditemukan." />
+        <EmptyState message="Custom Pokémon not found." />
       </main>
     );
   }
