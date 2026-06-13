@@ -12,6 +12,8 @@ const NAV_LINKS = [
 export default function Navbar() {
   const pathname = usePathname();
 
+  if (pathname === "/") return null;
+
   return (
     <nav className="sticky top-0 z-50 glass-panel border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
