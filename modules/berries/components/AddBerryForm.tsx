@@ -47,7 +47,7 @@ export default function AddBerryForm({ onSuccess }: Props) {
       });
       onSuccess?.();
     } catch {
-      setServerError("Gagal menambahkan Berry");
+      setServerError("Failed to add Berry");
     }
   };
 
@@ -58,8 +58,8 @@ export default function AddBerryForm({ onSuccess }: Props) {
         control={control}
         render={({ field }) => (
           <Input
-            label="Nama"
-            placeholder="contoh: oran"
+            label="Name"
+            placeholder="e.g. oran"
             error={errors.name?.message}
             {...field}
           />
@@ -179,7 +179,7 @@ export default function AddBerryForm({ onSuccess }: Props) {
       {serverError && <p className="text-xs text-red-400">{serverError}</p>}
 
       <Button type="submit" isLoading={isSubmitting} className="w-full mt-2">
-        Tambah Berry
+        Add Berry
       </Button>
     </form>
   );

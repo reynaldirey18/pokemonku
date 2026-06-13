@@ -17,7 +17,7 @@ describe("addBerrySchema", () => {
   it("rejects name shorter than 2 chars", async () => {
     await expect(
       addBerrySchema.validate({ ...validData, name: "a" })
-    ).rejects.toThrow("Minimal 2 karakter");
+    ).rejects.toThrow("Minimum 2 characters");
   });
 
   it("rejects empty name", async () => {
@@ -34,13 +34,13 @@ describe("addBerrySchema", () => {
   it("rejects empty natural_gift_type", async () => {
     await expect(
       addBerrySchema.validate({ ...validData, natural_gift_type: "" })
-    ).rejects.toThrow("Tipe wajib dipilih");
+    ).rejects.toThrow("Type is required");
   });
 
   it("rejects empty flavors array", async () => {
     await expect(
       addBerrySchema.validate({ ...validData, flavors: [] })
-    ).rejects.toThrow("Pilih minimal 1 rasa");
+    ).rejects.toThrow("Select at least 1 flavor");
   });
 
   it("accepts multiple flavors", async () => {
@@ -64,12 +64,12 @@ describe("addBerrySchema", () => {
   it("rejects non-number smoothness", async () => {
     await expect(
       addBerrySchema.validate({ ...validData, smoothness: "abc" })
-    ).rejects.toThrow("Harus angka");
+    ).rejects.toThrow("Must be a number");
   });
 
   it("rejects empty firmness", async () => {
     await expect(
       addBerrySchema.validate({ ...validData, firmness: "" })
-    ).rejects.toThrow("Firmness wajib dipilih");
+    ).rejects.toThrow("Firmness is required");
   });
 });

@@ -23,7 +23,7 @@ describe("addPokemonSchema", () => {
   it("rejects name shorter than 2 chars", async () => {
     await expect(
       addPokemonSchema.validate({ ...validData, name: "a" })
-    ).rejects.toThrow("Minimal 2 karakter");
+    ).rejects.toThrow("Minimum 2 characters");
   });
 
   it("rejects empty name", async () => {
@@ -35,13 +35,13 @@ describe("addPokemonSchema", () => {
   it("rejects empty types array", async () => {
     await expect(
       addPokemonSchema.validate({ ...validData, types: [] })
-    ).rejects.toThrow("Pilih minimal 1 tipe");
+    ).rejects.toThrow("Select at least 1 type");
   });
 
   it("rejects more than 2 types", async () => {
     await expect(
       addPokemonSchema.validate({ ...validData, types: ["fire", "water", "grass"] })
-    ).rejects.toThrow("Maksimal 2 tipe");
+    ).rejects.toThrow("Maximum 2 types");
   });
 
   it("accepts exactly 2 types", async () => {

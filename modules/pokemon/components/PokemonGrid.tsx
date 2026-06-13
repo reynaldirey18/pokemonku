@@ -47,11 +47,11 @@ export default function PokemonGrid({
   });
 
   if (isError && filter !== "custom") {
-    return <EmptyState message="Gagal memuat data." />;
+    return <EmptyState message="Failed to load data." />;
   }
 
   if (filter === "custom" && !isLoading && customItems.length === 0) {
-    return <EmptyState message="Belum ada custom pokémon." />;
+    return <EmptyState message="No custom Pokémon yet." />;
   }
 
   const noResults =
@@ -61,7 +61,7 @@ export default function PokemonGrid({
     customItems.length === 0;
 
   if (noResults) {
-    return <EmptyState message="Pokémon tidak ditemukan." />;
+    return <EmptyState message="No Pokémon found." />;
   }
 
   return (

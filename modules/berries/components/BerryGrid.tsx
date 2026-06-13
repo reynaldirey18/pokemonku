@@ -47,11 +47,11 @@ export default function BerryGrid({
   });
 
   if (isError && filter !== "custom") {
-    return <EmptyState message="Gagal memuat data." />;
+    return <EmptyState message="Failed to load data." />;
   }
 
   if (filter === "custom" && !isLoading && customItems.length === 0) {
-    return <EmptyState message="Belum ada custom berry." />;
+    return <EmptyState message="No custom berries yet." />;
   }
 
   const noResults =
@@ -61,7 +61,7 @@ export default function BerryGrid({
     customItems.length === 0;
 
   if (noResults) {
-    return <EmptyState message="Berry tidak ditemukan." />;
+    return <EmptyState message="No berries found." />;
   }
 
   return (

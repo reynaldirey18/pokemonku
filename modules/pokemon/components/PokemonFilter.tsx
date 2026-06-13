@@ -6,7 +6,7 @@ import Button from "@/components/ui/Button";
 export type FilterType = "all" | "api" | "custom";
 
 const OPTIONS: { label: string; value: FilterType }[] = [
-  { label: "Semua", value: "all" },
+  { label: "All", value: "all" },
   { label: "API", value: "api" },
   { label: "Custom", value: "custom" },
 ];

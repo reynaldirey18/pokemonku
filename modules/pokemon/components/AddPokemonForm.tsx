@@ -59,7 +59,7 @@ export default function AddPokemonForm({ onSuccess }: Props) {
       });
       onSuccess?.();
     } catch {
-      setServerError("Gagal menambahkan pokemon");
+      setServerError("Failed to add Pokémon");
     }
   };
 
@@ -70,8 +70,8 @@ export default function AddPokemonForm({ onSuccess }: Props) {
         control={control}
         render={({ field }) => (
           <Input
-            label="Nama"
-            placeholder="contoh: flamewolf"
+            label="Name"
+            placeholder="e.g. flamewolf"
             error={errors.name?.message}
             {...field}
           />
@@ -83,7 +83,7 @@ export default function AddPokemonForm({ onSuccess }: Props) {
         control={control}
         render={({ field }) => (
           <div className="flex flex-col gap-1.5">
-            <p className="text-sm font-medium text-white/80">Tipe (maks. 2)</p>
+            <p className="text-sm font-medium text-white/80">Type (max. 2)</p>
             <div className="flex flex-wrap gap-2">
               {POKEMON_TYPES.map((type) => (
                 <button
@@ -120,8 +120,8 @@ export default function AddPokemonForm({ onSuccess }: Props) {
         render={({ field }) => (
           <Input
             label="Abilities"
-            placeholder="contoh: blaze, intimidate"
-            hint="Pisahkan dengan koma"
+            placeholder="e.g. blaze, intimidate"
+            hint="Separate with commas"
             error={errors.abilities?.message}
             {...field}
           />
@@ -155,7 +155,7 @@ export default function AddPokemonForm({ onSuccess }: Props) {
       {serverError && <p className="text-xs text-red-400">{serverError}</p>}
 
       <Button type="submit" isLoading={isSubmitting} className="w-full mt-2">
-        Tambah Pokémon
+        Add Pokémon
       </Button>
     </form>
   );

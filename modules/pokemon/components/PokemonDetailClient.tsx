@@ -27,7 +27,7 @@ export default function PokemonDetailClient({ name, customPokemon }: Props) {
 
   if (!customPokemon && isLoading) return <SkeletonCard />;
   if (!customPokemon && (isError || !data)) {
-    return <EmptyState message="Pokémon tidak ditemukan." />;
+    return <EmptyState message="Pokémon not found." />;
   }
   if (!pokemon) return null;
 
