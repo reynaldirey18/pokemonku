@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Leaf } from "lucide-react";
+import { useRouter } from "next/navigation";
 import Card from "@/components/ui/Card";
 import type { BerryDetail, CustomBerry } from "../types";
 
@@ -10,14 +11,19 @@ type Props = {
 };
 
 export default function BerryCard({ berry }: Props) {
+  const router = useRouter();
   const isCustom = "isCustom" in berry;
 
   const imageUrl = isCustom
     ? null
     : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${berry.name}-berry.png`;
 
+  const href = isCustom
+    ? `/berries/custom/${berry.id}`
+    : `/berries/${berry.name}`;
+
   return (
-    <Card>
+    <Card onClick={() => router.push(href)}>
       {isCustom && (
         <span className="absolute top-2 right-2 z-10 text-[9px] bg-white/15 text-white/50 px-1.5 py-0.5 rounded-full uppercase tracking-wider">
           custom
