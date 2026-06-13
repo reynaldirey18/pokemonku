@@ -49,7 +49,7 @@ export default function Modal({ isOpen, onClose, title, children, className }: M
             transition={{ duration: 0.25, ease: [0.34, 1.56, 0.64, 1] }}
             onClick={(e) => e.stopPropagation()}
             className={cn(
-              "glass-card w-full max-w-md rounded-3xl p-6",
+              "bg-white/15 backdrop-blur-2xl border border-white/30 w-full max-w-md rounded-3xl p-6",
               className
             )}
           >
