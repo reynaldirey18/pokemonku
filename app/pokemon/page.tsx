@@ -55,9 +55,8 @@ export default async function PokemonPage({ searchParams }: Props) {
             </h1>
           </div>
           <div className="sm:w-102 flex items-center gap-3">
-            <Suspense>
-              <PokemonSearch />
-            </Suspense>
+            <PokemonSearch />
+
             <AddPokemonButton />
           </div>
         </div>

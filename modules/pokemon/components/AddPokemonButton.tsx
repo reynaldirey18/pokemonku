@@ -13,7 +13,7 @@ export default function AddPokemonButton() {
     <>
       <Button size="sm" onClick={() => setIsOpen(true)}>
         <Plus size={14} />
-        Add Custom
+        Add Custom Pokémon
       </Button>
 
       <Modal
