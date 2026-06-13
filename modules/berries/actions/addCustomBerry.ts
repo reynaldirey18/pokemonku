@@ -7,7 +7,9 @@ import type { CustomBerry } from "../types";
 
 const filePath = path.join(process.cwd(), "data", "custom-berries.json");
 
-export async function addCustomBerry(data: Omit<CustomBerry, "id" | "isCustom">) {
+export async function addCustomBerry(
+  data: Omit<CustomBerry, "id" | "isCustom">,
+) {
   const raw = fs.readFileSync(filePath, "utf-8");
   const list: CustomBerry[] = JSON.parse(raw);
 
