@@ -9,11 +9,17 @@ export default function Home() {
       </div>
 
       <div className="text-center space-y-6 max-w-2xl">
-        <h1 className="text-5xl font-bold text-white/90">
-          Pokémon Explorer
-        </h1>
+        <h1 className="text-5xl font-bold text-white/90">Pokémon Explorer</h1>
         <p className="text-lg text-white/60">
-          Discover and explore Pokémon with beautiful liquid glass design
+          Created by Reynaldi Rangga Prayuda —
+          <a
+            href="https://reynaldirp.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-purple-300 hover:text-white transition-colors underline underline-offset-2"
+          >
+            reynaldirp.vercel.app
+          </a>
         </p>
       </div>
 
