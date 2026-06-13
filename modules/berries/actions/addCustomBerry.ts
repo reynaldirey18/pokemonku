@@ -30,3 +30,11 @@ export async function getCustomBerries(): Promise<CustomBerry[]> {
   const raw = fs.readFileSync(filePath, "utf-8");
   return JSON.parse(raw);
 }
+
+export async function deleteCustomBerry(id: string): Promise<void> {
+  const raw = fs.readFileSync(filePath, "utf-8");
+  const list: CustomBerry[] = JSON.parse(raw);
+  const filtered = list.filter((b) => b.id !== id);
+  fs.writeFileSync(filePath, JSON.stringify(filtered, null, 2));
+  revalidatePath("/berries");
+}

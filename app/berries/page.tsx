@@ -9,9 +9,9 @@ import { getCustomBerries } from "@/modules/berries/actions/addCustomBerry";
 import BerryGrid from "@/modules/berries/components/BerryGrid";
 import BerrySearch from "@/modules/berries/components/BerrySearch";
 import BerryPagination from "@/modules/berries/components/BerryPagination";
-import BerryFilter from "@/modules/berries/types/BerryFilter";
+import BerryFilter from "@/modules/berries/components/BerryFilter";
 import AddBerryButton from "@/modules/berries/components/AddBerryButton";
-import type { FilterType } from "@/modules/berries/types/BerryFilter";
+import type { FilterType } from "@/modules/berries/components/BerryFilter";
 
 const LIMIT = 20;
 
