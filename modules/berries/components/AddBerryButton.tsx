@@ -4,24 +4,24 @@ import { useState } from "react";
 import { Plus } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Modal from "@/components/ui/Modal";
-import AddPokemonForm from "./AddPokemonForm";
+import AddBerryForm from "./AddBerryForm";
 
-export default function AddPokemonButton() {
+export default function AddBerryButton() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <Button size="sm" onClick={() => setIsOpen(true)}>
         <Plus size={14} />
-        Add Custom Pokémon
+        Add Custom Berry
       </Button>
 
       <Modal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        title="Add Custom Pokémon"
+        title="Add Custom Berry"
       >
-        <AddPokemonForm onSuccess={() => setIsOpen(false)} />
+        <AddBerryForm onSuccess={() => setIsOpen(false)} />
       </Modal>
     </>
   );
