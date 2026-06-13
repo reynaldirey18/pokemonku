@@ -1,6 +1,6 @@
 import { useGetBerryList } from "./useGetBerryList";
 import type { CustomBerry } from "../types";
-import type { FilterType } from "../types/BerryFilter";
+import type { FilterType } from "../components/BerryFilter";
 
 type Params = {
   limit: number;

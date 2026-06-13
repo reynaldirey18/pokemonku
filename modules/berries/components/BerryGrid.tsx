@@ -6,7 +6,7 @@ import BerryCard from "./BerryCard";
 import { SkeletonCard } from "@/components/ui/Skeleton";
 import EmptyState from "@/components/ui/EmptyState";
 import type { CustomBerry } from "../types";
-import type { FilterType } from "../types/BerryFilter";
+import type { FilterType } from "./BerryFilter";
 
 const containerVariants = {
   hidden: {},
