@@ -3,9 +3,11 @@
 import { useRouter } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { useGetPokemonDetail } from "../hooks/useGetPokemonDetail";
+import { useDeleteCustomPokemon } from "../hooks/useDeleteCustomPokemon";
 import PokemonDetailView from "./PokemonDetailView";
 import { SkeletonCard } from "@/components/ui/Skeleton";
 import EmptyState from "@/components/ui/EmptyState";
+import Button from "@/components/ui/Button";
 import type { CustomPokemon } from "../types";
 
 type Props = {
@@ -15,6 +17,7 @@ type Props = {
 
 export default function PokemonDetailClient({ name, customPokemon }: Props) {
   const router = useRouter();
+  const { deletePokemon, isDeleting } = useDeleteCustomPokemon();
   const pokemonName = customPokemon?.name ?? name;
   const { data, isLoading, isError } = useGetPokemonDetail(pokemonName, {
     enabled: !customPokemon,
@@ -30,7 +33,7 @@ export default function PokemonDetailClient({ name, customPokemon }: Props) {
 
   return (
     <>
-      <div className="mb-6">
+      <div className="mb-6 flex items-center justify-between">
         <button
           onClick={() => router.back()}
           className="flex items-center gap-1 text-white/60 hover:text-white/90 transition-colors"
@@ -38,6 +41,17 @@ export default function PokemonDetailClient({ name, customPokemon }: Props) {
           <ChevronLeft size={18} />
           <span className="text-sm">Back</span>
         </button>
+
+        {customPokemon && (
+          <Button
+            variant="danger"
+            size="sm"
+            isLoading={isDeleting}
+            onClick={() => deletePokemon(customPokemon.id)}
+          >
+            Delete
+          </Button>
+        )}
       </div>
 
       <div className="glass-card rounded-2xl p-6">

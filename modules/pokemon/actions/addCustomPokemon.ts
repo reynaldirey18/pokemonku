@@ -28,3 +28,11 @@ export async function getCustomPokemons(): Promise<CustomPokemon[]> {
   const raw = fs.readFileSync(filePath, "utf-8");
   return JSON.parse(raw);
 }
+
+export async function deleteCustomPokemon(id: string): Promise<void> {
+  const raw = fs.readFileSync(filePath, "utf-8");
+  const list: CustomPokemon[] = JSON.parse(raw);
+  const updated = list.filter((p) => p.id !== id);
+  fs.writeFileSync(filePath, JSON.stringify(updated, null, 2));
+  revalidatePath("/pokemon");
+}

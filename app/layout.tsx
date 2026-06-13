@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/providers/query-provider";
+import Navbar from "@/components/Navbar";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -50,7 +51,10 @@ export default function RootLayout({
             </filter>
           </defs>
         </svg>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <Navbar />
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );
