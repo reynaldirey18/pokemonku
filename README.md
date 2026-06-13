@@ -1,6 +1,6 @@
-# Pokémon Explorer
+# PokémonKu
 
-Web app untuk explore data Pokémon dan Berry dari [PokéAPI](https://pokeapi.co). Bisa search, lihat detail, dan tambah Pokémon/Berry custom sendiri.
+A web app to explore Pokémon and Berry data from [PokéAPI](https://pokeapi.co). Browse, search, view details, and add your own custom Pokémon or Berry.
 
 **Live:** [pokemonku-reynaldirp.vercel.app](https://pokemonku-reynaldirp.vercel.app)
 **Author:** [reynaldirp.vercel.app](https://reynaldirp.vercel.app)
@@ -14,87 +14,92 @@ Web app untuk explore data Pokémon dan Berry dari [PokéAPI](https://pokeapi.co
 - Motion
 - Vitest + Testing Library
 
-## Cara Jalankan
+## Getting Started
 
 ```bash
 npm install
 npm run dev
 ```
 
-Buka [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000).
 
 ### Environment Variables
 
-Buat file `.env` di root project:
+Create a `.env` file at the project root:
 
 ```env
 NEXT_PUBLIC_POKEAPI_BASE_URL=https://pokeapi.co/api/v2
 ```
 
-## Fitur
+## Features
 
 **Pokémon Library** (`/pokemon`)
-- Browse 1000+ Pokémon dengan pagination
-- Search by name (min 3 karakter)
-- Filter: Semua / API / Custom
-- Detail: types, abilities, base stats
-- Tambah Pokémon custom (nama, tipe, abilities, stats)
-- Hapus Pokémon custom
+
+- Browse 1000+ Pokémon with pagination
+- Search by name (min 3 characters)
+- Filter: All / API / Custom
+- Detail view: types, abilities, base stats
+- Add custom Pokémon (name, types, abilities, stats)
+- Delete custom Pokémon
 
 **Berry Library** (`/berries`)
-- Browse semua berry dengan pagination
-- Search by name dan filter: Semua / API / Custom
-- Detail: firmness, flavors, natural gift type, dan stats (size, growth time, dll)
-- Tambah Berry custom (nama, natural gift type, flavors, smoothness, firmness)
-- Hapus Berry custom
 
-## Struktur Project
+- Browse all berries with pagination
+- Search by name and filter: All / API / Custom
+- Detail view: firmness, flavors, natural gift type, and stats (size, growth time, etc.)
+- Add custom Berry (name, natural gift type, flavors, smoothness, firmness)
+- Delete custom Berry
+
+## Project Structure
 
 ```
 modules/
-  pokemon/         → semua yang berhubungan dengan pokemon
+  pokemon/         → everything related to pokemon
     actions/       → server actions (add, delete, get)
-    components/    → UI components per fitur
-    hooks/         → custom hooks (useGetPokemonList, useFilteredPokemons, dll)
-    mappers/       → transform data dari API
-    schemas/       → validasi form (yup)
-    services/      → fetch ke PokéAPI (server & client)
+    components/    → feature UI components
+    hooks/         → custom hooks (useGetPokemonList, useFilteredPokemons, etc.)
+    mappers/       → transform data from API
+    schemas/       → form validation (yup)
+    services/      → fetch from PokéAPI (server & client)
     types/         → TypeScript types
-    data/          → konstanta statis (tipe pokemon, config stats)
-  berries/         → struktur sama dengan pokemon
-components/ui/     → shared UI (Button, Card, Modal, Input, dll)
+    data/          → static constants (pokemon types, stats config)
+  berries/         → same structure as pokemon
+components/ui/     → shared UI (Button, Card, Modal, Input, etc.)
 lib/               → utilities (api client, cn, useDebounce)
 app/               → Next.js routes
-data/              → JSON storage untuk custom pokemon/berry
+data/              → JSON storage for custom pokemon/berry
 ```
 
-## Arsitektur
+## Architecture
 
-**Microfrontend-style** — modul `pokemon` dan `berries` berdiri sendiri. Tidak saling import satu sama lain. Shared code hanya di `components/ui/` dan `lib/`.
+**Microfrontend-style** — `pokemon` and `berries` modules are fully independent. No cross-imports between them. Shared code lives only in `components/ui/` and `lib/`.
 
 **Data flow:**
+
 ```
 Page (Server Component)
-  └─ prefetchQuery → cache di server
+  └─ prefetchQuery → cached on server
        └─ HydrationBoundary
             └─ Client Component
-                 └─ useQuery (ambil dari cache, tidak double fetch)
+                 └─ useQuery (reads from cache, no double fetch)
 ```
 
-**Custom Pokemon/Berry** — disimpan di `data/*.json` via Server Action. Tidak pakai database, sesuai scope assessment.
+**Custom Pokémon/Berry** — stored in `data/*.json` via Server Actions. No database used, in line with the assessment scope. This approach works fine in standard Node.js environments (VPS, AWS EC2, etc.). For serverless platforms like Vercel, the storage layer needs to be replaced with a proper database (PostgreSQL, Redis, etc.) since the filesystem is read-only in production.
 
-**Search** — client-side filter dari hasil per page. Pagination otomatis jadi 1 halaman saat search aktif karena PokéAPI tidak support server-side search by name.
+**Search** — client-side filter over the current page results. Pagination resets to page 1 when search is active since PokéAPI doesn't support server-side search by name.
 
-**URL Custom** — `/pokemon/custom/[id]` dan `/berries/custom/[id]` (by ID bukan name) untuk hindari konflik dengan route API dan masalah karakter di URL.
+**Custom URLs** — `/pokemon/custom/[id]` and `/berries/custom/[id]` use ID instead of name to avoid conflicts with API routes and URL encoding issues.
+
+**Navbar** — hidden on the `/` page. Implemented using a `(main)` route group — `pokemon/` and `berries/` folders live inside `app/(main)/`, so the Navbar is only rendered on those pages without affecting the URL structure.
 
 ## UI Design
 
-Tampilan pakai efek **Liquid Glass** — terinspirasi dari [CodePen ini](https://codepen.io/Margarita-the-solid/pen/NPRPBjd). Background gelap dengan elemen glass/frosted yang responsif terhadap konten di belakangnya.
+Uses a **Liquid Glass** effect — inspired by [this CodePen](https://codepen.io/Margarita-the-solid/pen/NPRPBjd). Dark background with glass/frosted elements that react to the content behind them.
 
 ## Caching
 
-- **API responses** — di-cache di fetch level dengan `revalidate: 3600` (1 jam)
-- **Client state** — dikelola TanStack Query, di-hydrate dari SSR cache
+- **API responses** — cached at the fetch level with `revalidate: 3600` (1 hour)
+- **Client state** — managed by TanStack Query, hydrated from the SSR cache
 
 ## Tests
 
@@ -102,14 +107,14 @@ Tampilan pakai efek **Liquid Glass** — terinspirasi dari [CodePen ini](https:/
 npm run test
 ```
 
-File yang di-cover:
+Files covered:
 
-| File | Yang ditest |
-|---|---|
-| `pokemon/schemas/addPokemonSchema.test.ts` | Validasi form: nama, tipe, stats |
-| `berries/schemas/addBerrySchema.test.ts` | Validasi form: nama, flavors, firmness, smoothness |
-| `pokemon/mappers/index.test.ts` | Extract ID dari URL, shape data |
-| `berries/mappers/index.test.ts` | Extract ID dari URL, shape data |
-| `pokemon/actions/addCustomPokemon.test.ts` | Add, delete, get — mock fs & revalidatePath |
-| `berries/actions/addCustomBerry.test.ts` | Add, delete, get — mock fs & revalidatePath |
-| `lib/useDebounce.test.ts` | Debounce timing |
+| File                                       | What's tested                                        |
+| ------------------------------------------ | ---------------------------------------------------- |
+| `pokemon/schemas/addPokemonSchema.test.ts` | Form validation: name, types, stats                  |
+| `berries/schemas/addBerrySchema.test.ts`   | Form validation: name, flavors, firmness, smoothness |
+| `pokemon/mappers/index.test.ts`            | Extract ID from URL, data shape                      |
+| `berries/mappers/index.test.ts`            | Extract ID from URL, data shape                      |
+| `pokemon/actions/addCustomPokemon.test.ts` | Add, delete, get — mock fs & revalidatePath          |
+| `berries/actions/addCustomBerry.test.ts`   | Add, delete, get — mock fs & revalidatePath          |
+| `lib/useDebounce.test.ts`                  | Debounce timing                                      |
