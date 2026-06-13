@@ -49,7 +49,7 @@ export default function PokemonDetailClient({ name, customPokemon }: Props) {
             isLoading={isDeleting}
             onClick={() => deletePokemon(customPokemon.id)}
           >
-            Hapus
+            Delete
           </Button>
         )}
       </div>
