@@ -21,7 +21,7 @@
     background:
       radial-gradient(
         ellipse at 20% 50%,
-        rgba(255, 255, 255, 0.45) 0%,
+        rgba(132, 132, 132, 0.45) 0%,
         transparent 50%
       ),
       radial-gradient(
@@ -34,7 +34,7 @@
         rgba(60, 180, 200, 0.3) 0%,
         transparent 50%
       ),
-      linear-gradient(135deg, #ffffff, #1b4969, #042b16);
+      linear-gradient(135deg, #afafaf, #1b4969, #042b16);
     background-attachment: fixed;
     color: #f0e6ff;
   }
